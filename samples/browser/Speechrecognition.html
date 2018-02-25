@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HyperLoop Assistant - Voice identification</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    $(function() {
+        var params = {
+            // Request parameters
+            "shortAudio": "{boolean}",
+        };
+      
+        $.ajax({
+            url: "https://westus.api.cognitive.microsoft.com/spid/v1.0/identificationProfiles/3f3a7656-f564-4d44-bd09-8e1cccb6e676/enroll?" + $.param(params),
+            beforeSend: function(xhrObj){
+                // Request headers
+                xhrObj.setRequestHeader("Content-Type","multipart/form-data");
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","1a7cb72b4a1f432fbfaaede2e037216f");
+            },
+            type: "POST",
+            // Request body
+            data: "{body}",
+        })
+        .done(function(data) {
+            alert("success");
+        })
+        .fail(function() {
+            alert("error");
+        });
+    });
+</script>
+</body>
+</html>
